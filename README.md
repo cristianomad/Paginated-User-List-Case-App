@@ -9,6 +9,8 @@ The application contains the following functionalities:
 - When there is an error fetching additional users, display an error message to the user
 - When the API returns an empty result, display an empty screen state
 
+![Screenshot 2024-04-11 at 15 35 01](https://github.com/cristianomad/paginated-user-list-case-app/assets/772846/f9b490fa-384d-4746-ae04-210d99faa87c)
+
 # Setup
 
 - Download the latest stable [**Android Studio**](https://developer.android.com/studio)
