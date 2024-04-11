@@ -42,7 +42,7 @@ The report will be generated in `app/build/reports/androidTests/connected/debug/
 ## Architecture Overview
 The application architecture has three layers: [data layer](https://developer.android.com/jetpack/guide/data-layer), [domain layer](https://developer.android.com/jetpack/guide/domain-layer), and [UI layer](https://developer.android.com/jetpack/guide/ui-layer).
 
-![architecture-1-overall](https://github.com/cristianomad/paginated-user-list-case-app/assets/772846/624ce335-947f-4440-8973-d04af1a28a79)
+![architecture-1-overall](https://github.com/cristianomad/paginated-user-list-case-app/assets/772846/c27ee604-8b92-428a-ac39-220d8dedeedb)
 
 The architecture follows a reactive programming model with [unidirectional data flow](https://developer.android.com/topic/architecture#unidirectional-data-flow). With the data layer at the bottom, the key concepts are:
 
@@ -69,4 +69,4 @@ When the user opens the app or scrolls the user list, the app will attempt to lo
 
 The following diagram shows the events which occur and how data flows from the relevant objects to achieve this:
 
-![QontoTest](https://github.com/cristianomad/paginated-user-list-case-app/assets/772846/62c8be0b-d703-4334-b116-583933066c51)
+![QontoTest](https://github.com/cristianomad/paginated-user-list-case-app/assets/772846/d170acad-571c-4680-84c7-42f14ba73bd8)
