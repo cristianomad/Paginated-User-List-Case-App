@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PaginatedUserList</string>
+
+    <string name="users_empty">No users found.</string>
+</resources>
