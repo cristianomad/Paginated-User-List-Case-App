@@ -1,12 +1,8 @@
 package com.cristianomadeira.paginateduserlist.ui.feature.users
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.LocalOverscrollConfiguration
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,16 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.cristianomadeira.paginateduserlist.R
 import com.cristianomadeira.paginateduserlist.domain.entity.User
 import com.cristianomadeira.paginateduserlist.ui.component.ErrorSnackbar
 import com.cristianomadeira.paginateduserlist.ui.component.Loading
@@ -46,13 +37,13 @@ fun UsersScreen(
 @Composable
 fun UsersScreenContent(
     state: UsersScreenState,
-    getNextUsers: (size: Int) -> Unit = {}
+    getNextUsers: () -> Unit = {}
 ) {
     val lazyListState = rememberLazyListState()
 
     LaunchedEffect(lazyListState.canScrollForward) {
         if (lazyListState.canScrollForward.not() && state.isLoading.not()) {
-            getNextUsers(15)
+            getNextUsers()
         }
     }
 

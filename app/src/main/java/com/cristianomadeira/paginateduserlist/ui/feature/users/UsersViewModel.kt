@@ -17,21 +17,20 @@ import javax.inject.Inject
 class UsersViewModel @Inject constructor(
     private val getPaginatedUsersUseCase: GetPaginatedUsersUseCase
 ): ViewModel() {
-
     private val _screenState = MutableStateFlow(UsersScreenState())
     val screenState = _screenState.asStateFlow()
 
     private val currentScreenState =  { _screenState.value }
 
     init {
-        getNextUsers(15)
+        getNextUsers()
     }
 
-    fun getNextUsers(size: Int) {
+    fun getNextUsers() {
         viewModelScope.launch {
             setScreenState { copy(isLoading = true) }
 
-            getPaginatedUsersUseCase.getNextUsers(size).fold(
+            getPaginatedUsersUseCase.getNextUsers().fold(
                 onSuccess = { users ->
                     setScreenState {
                         copy(

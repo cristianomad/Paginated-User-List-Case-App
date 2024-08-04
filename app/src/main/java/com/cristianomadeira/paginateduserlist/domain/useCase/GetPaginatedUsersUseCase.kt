@@ -8,6 +8,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+private const val PAGE_SIZE = 15
+
 class GetPaginatedUsersUseCase @Inject constructor(
     private val userRepository: UserRepository,
     @Dispatcher(CoroutinesDispatchers.IO) private val dispatcher: CoroutineDispatcher
@@ -16,10 +18,10 @@ class GetPaginatedUsersUseCase @Inject constructor(
     var page: Int = 1
         private set
 
-    suspend fun getNextUsers(size: Int) = withContext(dispatcher) {
-        userRepository.getPaginatedUsers(page, size).fold(
+    suspend fun getNextUsers() = withContext(dispatcher) {
+        userRepository.getPaginatedUsers(page, PAGE_SIZE).fold(
             onSuccess = { users ->
-                if (users.size == size) page++
+                if (users.size == PAGE_SIZE) page++
                 Result.success(users)
             },
             onFailure = { error ->
