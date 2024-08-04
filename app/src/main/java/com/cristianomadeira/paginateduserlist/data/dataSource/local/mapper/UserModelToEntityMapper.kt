@@ -10,6 +10,7 @@ import javax.inject.Singleton
 class UserModelToEntityMapper @Inject constructor(): BaseMapper<UserModel, UserEntity>() {
     override fun mapFrom(from: UserModel): UserEntity =
         UserEntity(
+            id = from.id,
             email = from.email,
             firstName = from.firstName,
             lastName = from.lastName,

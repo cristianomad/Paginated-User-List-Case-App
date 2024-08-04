@@ -10,6 +10,7 @@ import javax.inject.Singleton
 class UserDtoToModelMapper @Inject constructor(): BaseMapper<UserDto, UserModel>() {
     override fun mapFrom(from: UserDto): UserModel =
         UserModel(
+            id  = from.login.uuid,
             email = from.email,
             firstName = from.name.first,
             lastName = from.name.last,

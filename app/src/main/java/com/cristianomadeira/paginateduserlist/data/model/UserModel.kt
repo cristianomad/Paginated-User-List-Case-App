@@ -1,7 +1,7 @@
 package com.cristianomadeira.paginateduserlist.data.model
 
 data class UserModel(
-    val id: Int = -1,
+    val id: String,
     val email: String,
     val firstName: String,
     val lastName: String,
