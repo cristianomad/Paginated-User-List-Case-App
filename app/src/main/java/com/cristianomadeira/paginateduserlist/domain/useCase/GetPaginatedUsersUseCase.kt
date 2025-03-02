@@ -18,10 +18,10 @@ class GetPaginatedUsersUseCase @Inject constructor(
     var page: Int = 1
         private set
 
-    suspend fun getNextUsers() = withContext(dispatcher) {
-        userRepository.getPaginatedUsers(page, PAGE_SIZE).fold(
+    suspend fun getNextUsers(pageSize: Int = PAGE_SIZE) = withContext(dispatcher) {
+        userRepository.getPaginatedUsers(page, pageSize).fold(
             onSuccess = { users ->
-                if (users.size == PAGE_SIZE) page++
+                if (users.size == pageSize) page++
                 Result.success(users)
             },
             onFailure = { error ->

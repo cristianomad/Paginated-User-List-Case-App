@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kover)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -85,6 +86,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.collections.immutable)
+    implementation(libs.kotlinx.metadata.jvm)
 
     //Data
     implementation(libs.androidx.room.runtime)

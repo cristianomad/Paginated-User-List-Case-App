@@ -15,9 +15,11 @@ import kotlinx.serialization.json.Json
 import org.junit.Test
 
 class UserRemoteDataSourceTest {
+    private val json = Json { ignoreUnknownKeys = true }
+
     @Test
     fun `when fetch users, successfully parse api response`() {
-        val expected = Json { ignoreUnknownKeys = true }.decodeFromString<UsersResultDto>(
+        val expected = json.decodeFromString<UsersResultDto>(
             API_RESPONSE
         )
 
