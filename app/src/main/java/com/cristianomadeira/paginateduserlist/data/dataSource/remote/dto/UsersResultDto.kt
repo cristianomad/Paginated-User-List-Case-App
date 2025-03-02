@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UsersResultDto(
-    @SerialName("results")
+    @SerialName("users")
     val results: List<UserDto>
 )

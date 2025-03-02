@@ -12,11 +12,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Loading(
-    modifier: Modifier = Modifier,
-    visible: Boolean = true
+    modifier: Modifier = Modifier
 ) {
-    if (visible.not()) return
-
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

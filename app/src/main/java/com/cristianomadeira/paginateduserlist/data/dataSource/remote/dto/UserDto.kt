@@ -5,12 +5,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserDto(
-    @SerialName("login")
-    val login: LoginDto,
-    @SerialName("name")
-    val name: UserNameDto,
+    @SerialName("id")
+    val id: Int,
+    @SerialName("firstName")
+    val firstName: String,
+    @SerialName("lastName")
+    val lastName: String,
     @SerialName("email")
     val email: String,
-    @SerialName("picture")
-    val picture: UserPictureDto
+    @SerialName("image")
+    val thumbnail: String
 )

@@ -77,15 +77,15 @@ fun UserCell(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-fun UserCellPreview() {
-    UserCell(
-        user = User(
-            firstName = "Cristiano",
-            lastName = "Madeira",
-            email = "cristiano@email.com",
-            thumbnail = "https://randomuser.me/api/portraits/thumb/men/75.jpg"
-        )
+fun UserCellPreview() =
+UserCell(
+    user = User(
+        id = 1,
+        firstName = "Cristiano",
+        lastName = "Madeira",
+        email = "cristiano@email.com",
+        thumbnail = "https://randomuser.me/api/portraits/thumb/men/75.jpg"
     )
-}
+)

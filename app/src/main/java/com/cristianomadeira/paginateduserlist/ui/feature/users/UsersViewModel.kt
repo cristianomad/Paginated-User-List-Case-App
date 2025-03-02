@@ -59,7 +59,7 @@ class UsersViewModel @Inject constructor(
 }
 
 data class UsersScreenState(
-    val isLoading: Boolean = false,
     val users: ImmutableList<User> = emptyList<User>().toImmutableList(),
-    val error: String = ""
+    val error: String = "",
+    val isLoading: Boolean = false
 )

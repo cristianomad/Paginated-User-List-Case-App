@@ -17,28 +17,36 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getPaginatedUsers(page: Int, size: Int): Result<List<User>> =
         userRemoteDataSource.getPaginatedUsers(page, size).fold(
             onSuccess = { remoteResult ->
-                val users = remoteResult.map { user -> user.copy(page = page) }
+                try {
+                    val users = remoteResult.map { user -> user.copy(page = page) }
 
-                if (page == 1) userLocalDataSource.deleteUsers()
+                    if (page == 0) userLocalDataSource.deleteUsers()
 
-                userLocalDataSource.insertUsers(users)
+                    userLocalDataSource.insertUsers(users)
 
-                val result = userModelToDomainEntityMapper.mapFromList(
-                    userLocalDataSource.getPaginatedUsers(page)
-                )
+                    val result = userModelToDomainEntityMapper.mapFromList(
+                        userLocalDataSource.getPaginatedUsers(page)
+                    )
 
-                Result.success(result)
+                    Result.success(result)
+                } catch (e: Exception) {
+                    Result.failure(e)
+                }
             },
             onFailure = {
-                val localResult = userModelToDomainEntityMapper.mapFromList(
-                    userLocalDataSource.getPaginatedUsers(page)
-                )
-
-                when {
-                    localResult.isNotEmpty() -> Result.success(localResult)
-                    else -> Result.failure(
-                        Exception("Could not fetch users. Check your internet connection and try again.")
+                try {
+                    val localResult = userModelToDomainEntityMapper.mapFromList(
+                        userLocalDataSource.getPaginatedUsers(page)
                     )
+
+                    when {
+                        localResult.isNotEmpty() -> Result.success(localResult)
+                        else -> Result.failure(
+                            Exception("Could not fetch users. Check your internet connection and try again.")
+                        )
+                    }
+                } catch (e: Exception) {
+                    Result.failure(e)
                 }
             }
         )

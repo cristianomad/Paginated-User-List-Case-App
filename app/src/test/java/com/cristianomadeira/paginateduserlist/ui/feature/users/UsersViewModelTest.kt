@@ -50,7 +50,7 @@ class UsersViewModelTest {
     }
 
     @Test
-    fun `When request next users, return users successfully`() = runTest {
+    fun `When requesting next users, return users successfully`() = runTest {
         val expected = listOf<User> (
             fixture(),
             fixture()
@@ -66,7 +66,7 @@ class UsersViewModelTest {
     }
 
     @Test
-    fun `When request next users, return error`() = runTest {
+    fun `When requesting next users, return error`() = runTest {
         val message = "Error fetching users"
 
         coEvery { getPaginatedUsersUseCase.getNextUsers(any()) } returns Result.failure(Exception(message))

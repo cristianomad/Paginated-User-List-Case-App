@@ -44,20 +44,20 @@ class GetPaginatedUsersUseCaseTest {
     }
 
     @Test
-    fun `when requests next users, successfully return paginated users`() = testScope.runTest {
+    fun `when requesting next users, successfully return paginated users`() = testScope.runTest {
         val response = listOf<User>(
             fixture(),
             fixture()
         )
 
         // Test getting first page
-        coEvery { userRepository.getPaginatedUsers(1, 1) } returns Result.success(listOf(response[0]))
+        coEvery { userRepository.getPaginatedUsers(0, 1) } returns Result.success(listOf(response[0]))
 
-        assertThat(getPaginatedUsersUseCase.page).isEqualTo(1)
+        assertThat(getPaginatedUsersUseCase.page).isEqualTo(0)
 
         val resultFirstPage = getPaginatedUsersUseCase.getNextUsers(1)
 
-        coVerify { userRepository.getPaginatedUsers(1, 1) }
+        coVerify { userRepository.getPaginatedUsers(0, 1) }
 
         resultFirstPage.fold(
             onSuccess = { users ->
@@ -67,13 +67,13 @@ class GetPaginatedUsersUseCaseTest {
         )
 
         // Test getting second page
-        coEvery { userRepository.getPaginatedUsers(2, 1) } returns Result.success(listOf(response[1]))
+        coEvery { userRepository.getPaginatedUsers(1, 1) } returns Result.success(listOf(response[1]))
 
-        assertThat(getPaginatedUsersUseCase.page).isEqualTo(2)
+        assertThat(getPaginatedUsersUseCase.page).isEqualTo(1)
 
         val resultSecondPage = getPaginatedUsersUseCase.getNextUsers(1)
 
-        coVerify { userRepository.getPaginatedUsers(2, 1) }
+        coVerify { userRepository.getPaginatedUsers(1, 1) }
 
         resultSecondPage.fold(
             onSuccess = { users ->
@@ -84,14 +84,14 @@ class GetPaginatedUsersUseCaseTest {
     }
 
     @Test
-    fun `when requests next users, request fails`() = testScope.runTest {
+    fun `when requesting next users, request fails`() = testScope.runTest {
         val errorMessage = "No users found"
 
         coEvery { userRepository.getPaginatedUsers(any(), any()) } returns Result.failure(Exception(errorMessage))
 
         val result = getPaginatedUsersUseCase.getNextUsers(1)
 
-        coVerify { userRepository.getPaginatedUsers(1, 1) }
+        coVerify { userRepository.getPaginatedUsers(0, 1) }
 
         result.fold(
             onSuccess = {},

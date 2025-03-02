@@ -21,11 +21,8 @@ import com.cristianomadeira.paginateduserlist.R
 
 @Composable
 fun NoUsersFound(
-    modifier: Modifier = Modifier,
-    visible: Boolean = true
+    modifier: Modifier = Modifier
 ) {
-    if (visible.not()) return
-
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

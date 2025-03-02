@@ -15,7 +15,7 @@ class GetPaginatedUsersUseCase @Inject constructor(
     @Dispatcher(CoroutinesDispatchers.IO) private val dispatcher: CoroutineDispatcher
 ) {
     @VisibleForTesting
-    var page: Int = 1
+    var page: Int = 0
         private set
 
     suspend fun getNextUsers(pageSize: Int = PAGE_SIZE) = withContext(dispatcher) {

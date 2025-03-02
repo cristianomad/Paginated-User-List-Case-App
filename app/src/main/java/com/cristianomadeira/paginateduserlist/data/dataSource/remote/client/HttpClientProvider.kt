@@ -18,8 +18,8 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
-private const val BASE_URL: String = "randomuser.me"
-private const val API_PATH: String = "api/"
+private const val BASE_URL: String = "dummyjson.com"
+private const val API_PATH: String = "user/"
 private const val TIME_OUT: Long = 60_000
 
 @Singleton

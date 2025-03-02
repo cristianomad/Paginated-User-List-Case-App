@@ -18,7 +18,7 @@ class UserRemoteDataSourceTest {
     private val json = Json { ignoreUnknownKeys = true }
 
     @Test
-    fun `when fetch users, successfully parse api response`() {
+    fun `when fetching users, successfully parse api response`() {
         val expected = json.decodeFromString<UsersResultDto>(
             API_RESPONSE
         )
@@ -34,7 +34,7 @@ class UserRemoteDataSourceTest {
         runTest {
             val httpClient = HttpClientProvider()(mockEngine)
             val dataSource = UserRemoteDataSourceImpl(httpClient, UserDtoToModelMapper())
-            val response = dataSource.getPaginatedUsers(page = 1, size = 3)
+            val response = dataSource.getPaginatedUsers(page = 0, size = 3)
 
             response.onSuccess { result ->
                 assertThat(result).isEqualTo(expected)
